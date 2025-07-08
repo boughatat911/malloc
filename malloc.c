@@ -25,3 +25,13 @@ void *malloc(size_t size) {
 // gcc -shared -fPIC malloc.c -ldl 
 
 // LD_PRELOAD=./a.out ./your program
+
+#include <string.h>
+inline static void *_m(size_t size, char *file, int line)
+{
+	if (strstr(file, "malloc.c") && line == 24)
+		return (NULL);
+	return (malloc(size));
+}
+
+# define malloc(x) _m(x, __FILE__, __LINE__)
