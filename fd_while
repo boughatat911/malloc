@@ -3,7 +3,7 @@ while true; do
 lsof -c minishell
 sleep 5
 done
-
+# -----------------------------------
 void f()
 {
     system("leaks a.out");
